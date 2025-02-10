@@ -1,13 +1,13 @@
-package com.sell_buy.backend;
+package com.sell_buy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendApplication {
+public class SellBuyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BackendApplication.class, args);
+        SpringApplication.run(SellBuyApplication.class, args);
     }
 
 }
