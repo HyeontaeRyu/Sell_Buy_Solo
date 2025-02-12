@@ -2,6 +2,7 @@ package com.sell_buy.common.validation;
 
 import com.sell_buy.db.entity.Member;
 import com.sell_buy.db.repository.MemberRepository;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -21,12 +22,12 @@ public class MemberValidator implements Validator {
     private final MemberRepository memberRepository;
 
     @Override
-    public boolean supports(Class<?> clazz) {
+    public boolean supports(@NonNull Class<?> clazz) {
         return Member.class.equals(clazz);
     }
 
     @Override
-    public void validate(Object target, Errors errors) {
+    public void validate(@NonNull Object target, @NonNull Errors errors) {
         Member member = (Member) target;
 
         if (memberRepository.existsByLoginId(member.getLoginId())) {
@@ -35,7 +36,7 @@ public class MemberValidator implements Validator {
         if (memberRepository.existsByEmail(member.getEmail())) {
             errors.rejectValue("email", "Duplicate.email", "Email already exists");
         }
-        if (memberRepository.existsByPhoneNum(member.getPhoneNum())) {
+        if (memberRepository.existsByPhone(member.getPhone())) {
             errors.rejectValue("phoneNum", "Duplicate.phoneNum", "Phone number already exists");
         }
 
@@ -51,7 +52,7 @@ public class MemberValidator implements Validator {
         if (!NICKNAME_PATTERN.matcher(member.getNickname()).matches()) {
             errors.rejectValue("nickname", "Invalid.nickname", "Nickname must be between 2 and 10 characters long and can include Korean characters");
         }
-        if (!PHONE_PATTERN.matcher(member.getPhoneNum()).matches()) {
+        if (!PHONE_PATTERN.matcher(member.getPhone()).matches()) {
             errors.rejectValue("phoneNum", "Invalid.phoneNum", "Phone number must be in the format 010-0000-0000");
         }
     }
