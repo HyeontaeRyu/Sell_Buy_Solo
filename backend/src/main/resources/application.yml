@@ -33,3 +33,6 @@ server:
         secure: true
         same-site: strict
       timeout: 30m
+jwt:
+  secret: 964a8b73956206f395afa12d4383ce50cbc2e47f817a174c61c57d6bcce0f8b2
+  expiration: 10800000

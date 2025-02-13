@@ -1,5 +1,6 @@
 package com.sell_buy.common.validation;
 
+import com.sell_buy.common.exception.errorCode.ValidationErrorCode;
 import com.sell_buy.common.exception.validation.StringEmptyValidationException;
 import com.sell_buy.common.exception.validation.StringLengthValidateException;
 import com.sell_buy.common.exception.validation.StringRegexValidateException;
@@ -42,7 +43,7 @@ public class StringValidation implements Validation {
 
     @Override
     public boolean validate() {
-        return regexValidation() && lengthValidation() && emptyValidation();
+        return emptyValidation() && regexValidation() && lengthValidation();
     }
 
     private boolean regexValidation() throws StringValidationException {
@@ -53,7 +54,7 @@ public class StringValidation implements Validation {
                 return true;
             }
         }
-        throw new StringRegexValidateException(context, this.regex, this.value);
+        throw new StringRegexValidateException(ValidationErrorCode.VALIDATION_INVALID, context, this.regex, this.value);
     }
 
     private boolean lengthValidation() throws StringValidationException {
@@ -70,12 +71,12 @@ public class StringValidation implements Validation {
                 }
             }
         }
-        throw new StringLengthValidateException(context, this.min, this.max, this.value);
+        throw new StringLengthValidateException(ValidationErrorCode.VALIDATION_INVALID, context, this.min, this.max, this.value);
     }
 
     private boolean emptyValidation() throws StringValidationException {
         if (this.value == null || this.value.isEmpty()) {
-            throw new StringEmptyValidationException(context, this.value);
+            throw new StringEmptyValidationException(ValidationErrorCode.VALIDATION_EMPTY, context, this.value);
         }
         return true;
     }

@@ -1,4 +1,4 @@
-package com.sell_buy.common.config;
+package com.sell_buy.common.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sell_buy.api.service.MemberService;
