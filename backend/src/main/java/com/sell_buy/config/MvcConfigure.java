@@ -1,4 +1,4 @@
-package com.sell_buy.common.config;
+package com.sell_buy.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

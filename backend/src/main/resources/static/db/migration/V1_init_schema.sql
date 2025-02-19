@@ -9,7 +9,7 @@ CREATE TABLE member
     email       VARCHAR2(80)  NOT NULL,
     create_date TIMESTAMP     NOT NULL,
     phone_num   VARCHAR2(20)  NOT NULL,
-    auth        VARCHAR2(10)  NOT NULL,
+    role        VARCHAR2(10)  NOT NULL,
     password    VARCHAR2(300) NOT NULL
 );
 

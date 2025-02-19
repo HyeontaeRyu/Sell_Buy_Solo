@@ -2,7 +2,7 @@ package com.sell_buy.db.entity;
 
 import com.sell_buy.db.enums.Role;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +12,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member implements UserDetails {
     @Id
     @Column(name = "mem_id")
@@ -38,7 +42,6 @@ public class Member implements UserDetails {
     @PrePersist
     public void prePersist() {
         this.regDate = this.regDate == null ? LocalDateTime.now() : this.regDate;
-
     }
 
     @Override

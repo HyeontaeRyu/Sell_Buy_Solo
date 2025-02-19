@@ -1,6 +1,6 @@
 package com.sell_buy.api.service.impl;
 
-import com.sell_buy.api.request.MemberRegisterPostReq;
+import com.sell_buy.api.request.MemberRegisterReq;
 import com.sell_buy.api.service.MemberService;
 import com.sell_buy.db.entity.Member;
 import com.sell_buy.db.repository.MemberRepository;
@@ -21,7 +21,15 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Long registerMember(MemberRegisterPostReq dto) {
-        
+    public void registerMember(MemberRegisterReq dto) {
+        Member member = Member.builder()
+                .loginId(dto.loginId())
+                .password(passwordEncoder.encode(dto.password()))
+                .name(dto.name())
+                .nickname(dto.nickname())
+                .email(dto.email())
+                .phone(dto.phone())
+                .build();
+        memberRepository.save(member);
     }
 }
