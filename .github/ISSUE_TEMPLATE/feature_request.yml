@@ -18,3 +18,22 @@ A clear and concise description of any alternative solutions or features you've 
 
 **Additional context**
 Add any other context or screenshots about the feature request here.
+
+name: "Feature"
+description: "Feature you want to add or we need to add"
+labels: ["enhancement"]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please describe about this feature.
+      placeholder: What is it, Why, Expected Behavor [...]
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: To do
+      description: Please write down what is needed, [...].
+      placeholder: Url pattern, Features needed [...] 
+    validations:
+      required: true
